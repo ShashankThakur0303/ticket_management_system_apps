@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974616957143",
+    "project_id": "ticket-management-system-db0dc",
+    "storage_bucket": "ticket-management-system-db0dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974616957143:android:a24cc3a2c5da9b57b8e092",
+        "android_client_info": {
+          "package_name": "com.example.ticket_management_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ6i8XTgtp5j9he49cMkK4Jd2WCxJbWto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
