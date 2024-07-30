@@ -637,6 +637,7 @@ class _RaiseState extends State<Raise> {
       "date": date,
       "user": widget.userID,
       'status': 'Open',
+      "tickets": ticketID,
     }).whenComplete(() {
       print("Data Stored Successfully");
     });

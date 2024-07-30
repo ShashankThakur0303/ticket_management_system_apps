@@ -23,11 +23,12 @@ class _FilteredReportState extends State<FilteredReport> {
 
   List<String> buildings = [];
   List<String> asset = [];
-  List<String> floor = [];
+  List<String> floors = [];
   List<String> room = [];
   List<String> work = [];
   List<String> serviceProvider = [];
-  List<String> status = [];
+  List<String> status = ["All", "Open", "Close"];
+
   String? selectedBuilding;
   String? selectedFloor;
   String? selectedRoom;
@@ -110,8 +111,9 @@ class _FilteredReportState extends State<FilteredReport> {
                                 );
                               }).toList(),
                               onChanged: (value) async {
-                                buildings.clear;
-                                setState(() {});
+                                getFloors(value.toString()).whenComplete(() {
+                                  setState(() {});
+                                });
                               },
                               decoration: InputDecoration(
                                 labelText: 'Buildings',
@@ -140,7 +142,6 @@ class _FilteredReportState extends State<FilteredReport> {
                                 );
                               }).toList(),
                               onChanged: (value) async {
-                                asset.clear;
                                 setState(() {});
                               },
                               decoration: InputDecoration(
@@ -167,14 +168,15 @@ class _FilteredReportState extends State<FilteredReport> {
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: DropdownButtonFormField(
                               value: selectedFloor,
-                              items: floor.map((String option) {
-                                return DropdownMenuItem<String>(
+                              disabledHint: const Text("Select building first"),
+                              items: floors.map((String option) { 
+                                return DropdownMenuItem<String>( 
                                   value: option,
                                   child: Text(option),
-                                );
+                                ); 
                               }).toList(),
                               onChanged: (value) async {
-                                floor.clear;
+                                floors.clear;
                                 setState(() {});
                               },
                               decoration: InputDecoration(
@@ -350,14 +352,14 @@ class _FilteredReportState extends State<FilteredReport> {
     print(buildings);
   }
 
-  // Future getFloors() async {
-  //   QuerySnapshot floorQuery = await FirebaseFirestore.instance
-  //       .collection("buildingNumbers")
-  //       .doc(buildings)
-  //       .collection("floorNumbers")
-  //       .get();
-  //       floor = floorQuery.docs.map((e) => e.id).toList();
-  // }
+  Future getFloors(String selectedBuilding) async {
+    QuerySnapshot floorQuery = await FirebaseFirestore.instance
+        .collection("buildingNumbers")
+        .doc(selectedBuilding)
+        .collection("floorNumbers")
+        .get();
+    floors = floorQuery.docs.map((e) => e.id).toList();
+  }
 
   Future<void> filterTickets(String selectedDate) async {
     try {
