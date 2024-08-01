@@ -150,7 +150,7 @@ class _RaiseState extends State<Raise> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
                                   child: DropdownButtonFormField(
-                                    value: _selectedBuilding,
+                                    //value: _selectedBuilding,
                                     items: buildingOptions.map((String option) {
                                       return DropdownMenuItem<String>(
                                         value: option,
